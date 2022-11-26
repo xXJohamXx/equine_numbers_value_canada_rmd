@@ -3,7 +3,8 @@ title: "Historical horse population in Canada"
 output:
   html_document: null
   toc: yes
-  
+params: 
+  province: "Quebec"
 ---
 
 ```{r setup, include=FALSE}
@@ -64,9 +65,10 @@ max_horses <- horse_pop %>%
 knitr::kable(max_horses, caption = "Table 1. Range of the number horses for each provinces at any time point between 1940 - 1972")
 ```
 
-Below we zoom in and look at the province of Alberta:
+Below we zoom in and look at the province of `r params$province`:
 
-```{r plot province, fig.width=5, fig.height=4}
+Figure 2. Historical number of horses in `r params$province`
+```{r plot province, fig.width=5, fig.height=4, out.width='80%', out.height='80%'}
 province_plot <- horse_pop %>% 
   filter(GEO == "Alberta") %>% 
   ggplot(aes(x = Ref_Date, y = Value)) +
